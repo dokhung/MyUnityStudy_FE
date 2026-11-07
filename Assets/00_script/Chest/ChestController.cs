@@ -5,6 +5,16 @@ using UnityEngine;
 
 public class ChestController : MonoBehaviour
 {
+    [Header("Chest Settings")]
+    [SerializeField]
+    private GameObject dropItemPrefab;
+
+    [SerializeField] 
+    private Transform dropPoint;
+    
+    
+    
+    
     private bool isPlayerNearby = false;
     private bool isOpened = false;
 
@@ -20,6 +30,11 @@ public class ChestController : MonoBehaviour
     {
         isOpened = true;
         Debug.Log("Chest Opened");
+
+        if (dropItemPrefab != null)
+        {
+            Instantiate(dropItemPrefab, dropPoint.position, Quaternion.identity);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
